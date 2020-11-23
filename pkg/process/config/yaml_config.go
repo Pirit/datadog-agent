@@ -198,7 +198,7 @@ func (a *AgentConfig) loadSysProbeYamlConfig(path string) error {
 		a.Enabled = true
 	}
 
-	a.EnableRuntimeCompilation = config.Datadog.GetBool(key(spNS, "enable_runtime_compilation"))
+	a.EnableRuntimeCompiler = config.Datadog.GetBool(key(spNS, "enable_runtime_compiler"))
 	a.KernelHeadersDirs = config.Datadog.GetStringSlice(key(spNS, "kernel_header_dirs"))
 
 	if config.Datadog.IsSet(key(spNS, "runtime_compiler_output_dir")) {
