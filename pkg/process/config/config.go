@@ -504,6 +504,7 @@ func loadSysProbeEnvVariables() {
 		{"DD_COLLECT_LOCAL_DNS", "system_probe_config.collect_local_dns"},
 		{"DD_COLLECT_DNS_STATS", "system_probe_config.collect_dns_stats"},
 		{"DD_ENABLE_RUNTIME_COMPILER", "system_probe_config.enable_runtime_compiler"},
+		{"DD_KERNEL_HEADER_DIRS", "system_probe_config.kernel_header_dirs"},
 		{"DD_RUNTIME_COMPILER_OUTPUT_DIR", "system_probe_config.runtime_compiler_output_dir"},
 	} {
 		if v, ok := os.LookupEnv(variable.env); ok {
