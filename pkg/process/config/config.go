@@ -22,7 +22,7 @@ import (
 	"github.com/DataDog/datadog-agent/pkg/util/log"
 )
 
-var (
+const (
 	// defaultProxyPort is the default port used for proxies.
 	// This mirrors the configuration for the infrastructure agent.
 	defaultProxyPort = 3128
@@ -30,6 +30,11 @@ var (
 	// defaultSystemProbeBPFDir is the default path for eBPF programs
 	defaultSystemProbeBPFDir = "/opt/datadog-agent/embedded/share/system-probe/ebpf"
 
+	// defaultRuntimeCompilerOutputDir is the default path for output from the system-probe runtime compiler
+	defaultRuntimeCompilerOutputDir = "/var/tmp/datadog-agent/system-probe/build"
+)
+
+var (
 	processChecks   = []string{"process", "rtprocess"}
 	containerChecks = []string{"container", "rtcontainer"}
 )
@@ -105,6 +110,7 @@ type AgentConfig struct {
 	EnableTracepoints              bool
 	EnableRuntimeCompilation       bool
 	KernelHeadersDirs              []string
+	RuntimeCompilerOutputDir       string
 
 	// DNS stats configuration
 	CollectDNSStats bool
@@ -228,6 +234,7 @@ func NewDefaultAgentConfig(canAccessContainers bool) *AgentConfig {
 		OffsetGuessThreshold:         400,
 		EnableTracepoints:            false,
 		CollectDNSStats:              true,
+		RuntimeCompilerOutputDir:     defaultRuntimeCompilerOutputDir,
 
 		// Check config
 		EnabledChecks: enabledChecks,
@@ -495,10 +502,10 @@ func loadSysProbeEnvVariables() {
 		{"DD_DISABLE_DNS_INSPECTION", "system_probe_config.disable_dns_inspection"},
 		{"DD_COLLECT_LOCAL_DNS", "system_probe_config.collect_local_dns"},
 		{"DD_COLLECT_DNS_STATS", "system_probe_config.collect_dns_stats"},
+		{"DD_RUNTIME_COMPILER_OUTPUT_DIR", "system_probe_config.runtime_compiler_output_dir"},
 	} {
 		if v, ok := os.LookupEnv(variable.env); ok {
 			config.Datadog.Set(variable.cfg, v)
-
 		}
 	}
 }
