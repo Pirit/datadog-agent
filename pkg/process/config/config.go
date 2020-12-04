@@ -103,6 +103,8 @@ type AgentConfig struct {
 	MaxConnectionsStateBuffered    int
 	OffsetGuessThreshold           uint64
 	EnableTracepoints              bool
+	EnableRuntimeCompilation       bool
+	KernelHeadersDirs              []string
 
 	// DNS stats configuration
 	CollectDNSStats bool
