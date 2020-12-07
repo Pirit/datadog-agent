@@ -918,9 +918,9 @@ int socket__dns_filter(struct __sk_buff* skb) {
     }
 
     __u16 src_port = load_half(skb, ETH_HLEN + ip_hdr_size + src_port_offset);
-    __u16 dst_port = load_half(skb, ETH_HLEN + ip_hdr_size + dst_port_offset);
 
 #ifdef FEATURE_DNS_STATS_ENABLED
+    __u16 dst_port = load_half(skb, ETH_HLEN + ip_hdr_size + dst_port_offset);
     if (src_port != 53 && dst_port != 53) {
         return 0;
     }
