@@ -9,7 +9,7 @@ package compiler
 #cgo LDFLAGS: -lz -ldl -lm -lrt
 #cgo !arm64 LDFLAGS: -ltinfo
 #cgo CXXFLAGS: -I/opt/datadog-agent/embedded/include -std=c++14 -fno-exceptions -fno-rtti -D_GNU_SOURCE -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS -D__STDC_LIMIT_MACROS -DLLVM_MAJOR_VERSION=11
-#cgo arm64 CFLAGS: -mno-outline-atomics
+#cgo arm64 CXXFLAGS: -mno-outline-atomics
 #cgo CPPFLAGS: -I/opt/datadog-agent/embedded/include -D_GNU_SOURCE -D_DEBUG -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS -D__STDC_LIMIT_MACROS -DLLVM_MAJOR_VERSION=11
 
 #include <stdlib.h>
